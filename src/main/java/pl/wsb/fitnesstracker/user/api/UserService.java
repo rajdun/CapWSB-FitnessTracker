@@ -10,9 +10,26 @@ import java.util.List;
  */
 public interface UserService {
 
+	/**
+	 * Creates a new user.
+	 *
+	 * @param user the user to create
+	 * @return the created user
+	 */
     User createUser(User user);
 
+	/**
+	 * Updates an existing user.
+	 *
+	 * @param id the user to update
+	 * @return the updated user
+	 */
     User findById(Long id);
 
+	/**
+	 * Gets all users with birthdate before the specified date.
+	 * @param time - date to compare with
+	 * @return list of users with birthdate before the specified date
+	 * */
     List<User> getUsersOlderThan(LocalDate time);
 }
