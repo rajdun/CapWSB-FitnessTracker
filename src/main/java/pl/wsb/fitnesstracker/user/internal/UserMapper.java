@@ -23,6 +23,6 @@ class UserMapper {
     }
 
     UserSimpleDto toSimpleDto(User user) {
-        return new UserSimpleDto(user.getFirstName(), user.getLastName());
+        return new UserSimpleDto(user.getId(), user.getFirstName(), user.getLastName());
     }
 }
