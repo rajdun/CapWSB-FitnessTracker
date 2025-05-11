@@ -74,8 +74,12 @@ class UserController {
 	 * @return list of users with the same email
 	 */
     @GetMapping("/email")
-    public List<User> getUserByEmail(@RequestParam("email") String email) {
-        return userService.getUserByEmail(email);
+    public List<UserDto> getUserByEmail(@RequestParam("email") String email) {
+
+        return userService.getUserByEmail(email)
+			.stream()
+			.map(userMapper::toDto)
+			.toList();
     }
 
 	/**
