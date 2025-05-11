@@ -88,8 +88,8 @@ class UserController {
 	 * @return list of users older than the given date
 	 */
     @GetMapping("/older/{time}")
-    public List<User> getUsersOlderThan(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate time) {
-        return userService.getUsersOlderThan(time);
+    public List<UserDto> getUsersOlderThan(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate time) {
+        return userService.getUsersOlderThan(time).stream().map(userMapper::toDto).toList();
     }
 
 	/**
@@ -109,9 +109,10 @@ class UserController {
 	 * @return updated user data transfer object
 	 */
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
+    public UserDto updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
         var user = userMapper.toEntity(userDto);
         user.setId(id);
-        return userService.updateUser(user);
+
+        return userMapper.toDto(userService.updateUser(user));
     }
 }
