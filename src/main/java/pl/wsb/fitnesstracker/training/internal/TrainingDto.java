@@ -1,34 +1,35 @@
 package pl.wsb.fitnesstracker.training.internal;
 
+import java.util.Date;
+
 import lombok.Getter;
 import lombok.ToString;
-import pl.wsb.fitnesstracker.user.api.User;
+import pl.wsb.fitnesstracker.user.api.UserDto;
 
-import java.util.Date;
 
 @Getter
 @ToString
 public class TrainingDto {
-    private long userId;
+    private final UserDto user;
 
-    private Date startTime;
+    private final Date startTime;
 
-    private Date endTime;
+    private final Date endTime;
 
-    private ActivityType activityType;
+    private final ActivityType activityType;
 
-    private double distance;
+    private final double distance;
 
-    private double averageSpeed;
+    private final double averageSpeed;
 
     public TrainingDto(
-            final long user,
+            final UserDto user,
             final Date startTime,
             final Date endTime,
             final ActivityType activityType,
             final double distance,
             final double averageSpeed) {
-        this.userId = user;
+        this.user = user;
         this.startTime = startTime;
         this.endTime = endTime;
         this.activityType = activityType;
