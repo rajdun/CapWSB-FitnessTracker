@@ -81,8 +81,12 @@ public class TrainingServiceImpl implements TrainingProvider, TrainingService {
 		User user = userProvider.getUser(trainingForm.getUserId())
 			.orElseThrow(() -> new IllegalArgumentException("User with ID " + trainingForm.getUserId() + " not found!"));
 
-		training.update(user, trainingForm.getStartTime(), trainingForm.getEndTime(), trainingForm.getActivityType(),
-			trainingForm.getDistance(), trainingForm.getAverageSpeed());
+		training.update(user,
+			trainingForm.getStartTime(),
+			trainingForm.getEndTime(),
+			trainingForm.getActivityType(),
+			trainingForm.getDistance(),
+			trainingForm.getAverageSpeed());
 
 		return TrainingMapper.toDto(trainingRepository.save(training));
 	}

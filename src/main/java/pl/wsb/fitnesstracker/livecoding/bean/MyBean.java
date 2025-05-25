@@ -1,25 +1,30 @@
 package pl.wsb.fitnesstracker.livecoding.bean;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 
 @Profile("BeanCycle")
 @Service
 public class MyBean {
 
-    public MyBean() {
-        System.out.println("Instantiation");
-    }
+	public MyBean() {
 
-    @PostConstruct
-    public void init() {
-        System.out.println("Initializing..");
-    }
+		System.out.println("Instantiation");
+	}
 
-    @PreDestroy
-    public void destroy() {
-        System.out.println("Destroying..");
-    }
+	@PostConstruct
+	public void init() {
+
+		System.out.println("Initializing..");
+	}
+
+	@PreDestroy
+	public void destroy() {
+
+		System.out.println("Destroying..");
+	}
 }

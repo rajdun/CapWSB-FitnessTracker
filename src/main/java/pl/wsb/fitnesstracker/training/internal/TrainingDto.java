@@ -10,30 +10,32 @@ import pl.wsb.fitnesstracker.user.api.UserDto;
 @Getter
 @ToString
 public class TrainingDto {
-    private final UserDto user;
 
-    private final Date startTime;
+	private final UserDto user;
 
-    private final Date endTime;
+	private final Date startTime;
 
-    private final ActivityType activityType;
+	private final Date endTime;
 
-    private final double distance;
+	private final ActivityType activityType;
 
-    private final double averageSpeed;
+	private final double distance;
 
-    public TrainingDto(
-            final UserDto user,
-            final Date startTime,
-            final Date endTime,
-            final ActivityType activityType,
-            final double distance,
-            final double averageSpeed) {
-        this.user = user;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.activityType = activityType;
-        this.distance = distance;
-        this.averageSpeed = averageSpeed;
-    }
+	private final double averageSpeed;
+
+	public TrainingDto(
+		final UserDto user,
+		final Date startTime,
+		final Date endTime,
+		final ActivityType activityType,
+		final double distance,
+		final double averageSpeed) {
+
+		this.user = user;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.activityType = activityType;
+		this.distance = distance;
+		this.averageSpeed = averageSpeed;
+	}
 }

@@ -1,15 +1,3 @@
-/*
- * Created on 25-05-2025 11:35 by ajarzabe
- *
- * Copyright (c) 2001-2025 Univio S.A.
- * ul. Strzegomska 2-4, 53-611 Wrocław, Poland
- * Wszelkie prawa zastrzeżone
- *
- * Niniejsze oprogramowanie jest własnością Univio S.A.
- * Wykorzystanie niniejszego oprogramowania jest możliwe tylko na podstawie
- * i w zgodzie z warunkami umowy licencyjnej zawartej z Univio S.A.
- */
-
 package pl.wsb.fitnesstracker.training.api;
 
 import java.util.Date;

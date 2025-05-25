@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import pl.wsb.fitnesstracker.training.api.Training;
 import pl.wsb.fitnesstracker.training.api.TrainingForm;
 import pl.wsb.fitnesstracker.training.api.TrainingProvider;
 import pl.wsb.fitnesstracker.training.api.TrainingService;
@@ -26,51 +25,56 @@ import pl.wsb.fitnesstracker.training.api.TrainingService;
 @RequestMapping("/v1/trainings")
 @RequiredArgsConstructor
 public class TrainingController {
-    private final TrainingService trainingService;
+
+	private final TrainingService trainingService;
 	private final TrainingProvider trainingProvider;
 
 	@GetMapping
-    public List<TrainingDto> getAllTrainings() {
-        return trainingProvider.getAllTrainings()
-                .stream()
-				.map(TrainingMapper::toDto)
-                .toList();
-    }
+	public List<TrainingDto> getAllTrainings() {
 
-    @GetMapping("/{userId}")
-    public List<TrainingDto> getTrainingsByUserId(@PathVariable long userId) {
-        return trainingProvider.getTrainingsByUserId(userId)
-                .stream()
+		return trainingProvider.getAllTrainings()
+			.stream()
 			.map(TrainingMapper::toDto)
-                .toList();
-    }
+			.toList();
+	}
 
-    @GetMapping("/finished/{date}")
-    public List<TrainingDto> getTrainingsAfter(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
-        return trainingProvider.getTrainingsAfter(date)
-                .stream()
-				.map(TrainingMapper::toDto)
-                .toList();
-    }
+	@GetMapping("/{userId}")
+	public List<TrainingDto> getTrainingsByUserId(@PathVariable long userId) {
 
-    @GetMapping("/activityType")
-    public List<TrainingDto> getByActivityType(@RequestParam("activityType") ActivityType activityType) {
-        return trainingProvider.getByActivityType(activityType)
-                .stream()
-				.map(TrainingMapper::toDto)
-                .toList();
-    }
+		return trainingProvider.getTrainingsByUserId(userId)
+			.stream()
+			.map(TrainingMapper::toDto)
+			.toList();
+	}
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public TrainingDto createTraining(@RequestBody TrainingForm trainingForm) {
+	@GetMapping("/finished/{date}")
+	public List<TrainingDto> getTrainingsAfter(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+
+		return trainingProvider.getTrainingsAfter(date)
+			.stream()
+			.map(TrainingMapper::toDto)
+			.toList();
+	}
+
+	@GetMapping("/activityType")
+	public List<TrainingDto> getByActivityType(@RequestParam("activityType") ActivityType activityType) {
+
+		return trainingProvider.getByActivityType(activityType)
+			.stream()
+			.map(TrainingMapper::toDto)
+			.toList();
+	}
+
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public TrainingDto createTraining(@RequestBody TrainingForm trainingForm) {
 
 		return trainingService.putTraining(trainingForm);
-    }
+	}
 
-    @PutMapping("/{trainingId}")
-    public TrainingDto updateTraining(@PathVariable long trainingId, @RequestBody TrainingForm trainingForm) {
+	@PutMapping("/{trainingId}")
+	public TrainingDto updateTraining(@PathVariable long trainingId, @RequestBody TrainingForm trainingForm) {
 
-        return trainingService.patchTraining(trainingId, trainingForm);
-    }
+		return trainingService.patchTraining(trainingId, trainingForm);
+	}
 }

@@ -3,20 +3,22 @@ package pl.wsb.fitnesstracker.training.internal;
 // TODO : JavaDoc
 public enum ActivityType {
 
-    RUNNING("Running"),
-    CYCLING("Cycling"),
-    WALKING("Walking"),
-    SWIMMING("Swimming"),
-    TENNIS("Tenis");
+	RUNNING("Running"),
+	CYCLING("Cycling"),
+	WALKING("Walking"),
+	SWIMMING("Swimming"),
+	TENNIS("Tenis");
 
-    private final String displayName;
+	private final String displayName;
 
-    ActivityType(String displayName) {
-        this.displayName = displayName;
-    }
+	ActivityType(String displayName) {
 
-    public String getDisplayName() {
-        return displayName;
-    }
+		this.displayName = displayName;
+	}
+
+	public String getDisplayName() {
+
+		return displayName;
+	}
 
 }
