@@ -19,11 +19,30 @@ public interface TrainingProvider {
 	 */
 	Optional<User> getTraining(Long trainingId);
 
+	/**
+	 * Retrieves all trainings.
+	 * @return A list of all trainings
+	 */
 	List<Training> getAllTrainings();
 
+	/**
+	 * Retrieves all trainings for a specific user.
+	 * @param userId id of the user whose trainings are to be retrieved
+	 * @return A list of trainings for the specified user
+	 */
 	List<Training> getTrainingsByUserId(long userId);
 
+	/**
+	 * Retrieves all trainings that ended after the specified date.
+	 * @param date the date to compare with
+	 * @return A list of trainings that ended after the specified date
+	 */
 	List<Training> getTrainingsAfter(Date date);
 
+	/**
+	 * Retrieves all trainings for a specific activity type.
+	 * @param activityType the activity type to filter trainings by
+	 * @return A list of trainings for the specified activity type
+	 */
 	List<Training> getByActivityType(ActivityType activityType);
 }

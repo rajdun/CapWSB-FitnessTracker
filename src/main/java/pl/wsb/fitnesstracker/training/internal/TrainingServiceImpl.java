@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class TrainingServiceImpl implements TrainingProvider, TrainingService {
 
 	private final TrainingRepository trainingRepository;
 	private final UserProvider userProvider;
+
 
 	@Override
 	public Optional<User> getTraining(final Long trainingId) {
@@ -59,6 +61,8 @@ public class TrainingServiceImpl implements TrainingProvider, TrainingService {
 	@Override
 	public TrainingDto putTraining(TrainingForm trainingForm) {
 
+		Assert.notNull(trainingForm, "trainingForm must not be null");
+
 		User user = userProvider.getUser(trainingForm.getUserId())
 			.orElseThrow(() -> new IllegalArgumentException("User with ID " + trainingForm.getUserId() + " not found!"));
 
@@ -74,6 +78,8 @@ public class TrainingServiceImpl implements TrainingProvider, TrainingService {
 
 	@Override
 	public TrainingDto patchTraining(long id, TrainingForm trainingForm) {
+
+		Assert.notNull(trainingForm, "trainingForm must not be null");
 
 		Training training = trainingRepository.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("Training with id " + id + " not found!"));
