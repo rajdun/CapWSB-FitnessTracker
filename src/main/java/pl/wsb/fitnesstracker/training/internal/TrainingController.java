@@ -30,30 +30,34 @@ public class TrainingController {
 	private final TrainingProvider trainingProvider;
 
 	@GetMapping
-    public List<Training> getAllTrainings() {
+    public List<TrainingDto> getAllTrainings() {
         return trainingProvider.getAllTrainings()
                 .stream()
+				.map(TrainingMapper::toDto)
                 .toList();
     }
 
     @GetMapping("/{userId}")
-    public List<Training> getTrainingsByUserId(@PathVariable long userId) {
+    public List<TrainingDto> getTrainingsByUserId(@PathVariable long userId) {
         return trainingProvider.getTrainingsByUserId(userId)
                 .stream()
+			.map(TrainingMapper::toDto)
                 .toList();
     }
 
     @GetMapping("/finished/{date}")
-    public List<Training> getTrainingsAfter(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+    public List<TrainingDto> getTrainingsAfter(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
         return trainingProvider.getTrainingsAfter(date)
                 .stream()
+				.map(TrainingMapper::toDto)
                 .toList();
     }
 
     @GetMapping("/activityType")
-    public List<Training> getByActivityType(@RequestParam("activityType") ActivityType activityType) {
+    public List<TrainingDto> getByActivityType(@RequestParam("activityType") ActivityType activityType) {
         return trainingProvider.getByActivityType(activityType)
                 .stream()
+				.map(TrainingMapper::toDto)
                 .toList();
     }
 
